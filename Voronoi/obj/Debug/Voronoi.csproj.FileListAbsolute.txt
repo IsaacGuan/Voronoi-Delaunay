@@ -1,0 +1,1 @@
+D:\computational geometry\Voronoi\Voronoi\bin\Debug\Voronoi.exe.config
