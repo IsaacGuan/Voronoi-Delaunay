@@ -8,6 +8,23 @@ namespace Voronoi
 {
     class Delaunay
     {
+        public List<Edge> DelaunayEdges(List<Triangle> allTriangle)
+        {
+            List<Edge> delaunayEdgeList = new List<Edge>();
+
+            for (int i = 0; i < allTriangle.Count; i++)
+            {
+                Edge edge1 = new Edge(allTriangle[i].vertex1, allTriangle[i].vertex2);
+                Edge edge2 = new Edge(allTriangle[i].vertex2, allTriangle[i].vertex3);
+                Edge edge3 = new Edge(allTriangle[i].vertex2, allTriangle[i].vertex3);
+                if (!delaunayEdgeList.Contains(edge1)) delaunayEdgeList.Add(edge1);
+                if (!delaunayEdgeList.Contains(edge2)) delaunayEdgeList.Add(edge2);
+                if (!delaunayEdgeList.Contains(edge3)) delaunayEdgeList.Add(edge3);
+            }
+
+            return delaunayEdgeList;
+        }
+
         public List<Triangle> Triangulate(List<Point> triangulationPoints)
         {
             if (triangulationPoints.Count < 3) throw new ArgumentException("Can not triangulate less than three vertices!");

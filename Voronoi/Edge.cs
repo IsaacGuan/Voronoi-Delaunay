@@ -16,6 +16,12 @@ namespace Voronoi
             this.end = end;
         }
 
+        public bool ContainsVertex(Point point)
+        {
+            if (start == point || end == point) return true;
+            return false;
+        }
+
         public override bool Equals(object obj)
         {
             return this == (Edge)obj;

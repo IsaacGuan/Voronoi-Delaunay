@@ -50,6 +50,7 @@
     <Compile Include="Edge.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Triangle.cs" />
+    <Compile Include="Voronoi.cs" />
     <Compile Include="VoronoiForm.cs">
       <SubType>Form</SubType>
     </Compile>
