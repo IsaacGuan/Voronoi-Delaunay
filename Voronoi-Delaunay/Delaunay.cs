@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Voronoi
+namespace Voronoi_Delaunay
 {
     class Delaunay
     {
@@ -25,13 +25,12 @@ namespace Voronoi
             return delaunayEdgeList;
         }
 
-        public static List<Triangle> Triangulate(List<Point> triangulationPoints)
+        public static List<Triangle> Triangulate(Triangle superTriangle, List<Point> triangulationPoints)
         {
             if (triangulationPoints.Count < 3) throw new ArgumentException("Can not triangulate less than three vertices!");
 
             List<Triangle> triangles = new List<Triangle>(); ;
-
-            Triangle superTriangle = SuperTriangle(triangulationPoints);
+            
             triangles.Add(superTriangle);
             
             for (int i = 0; i < triangulationPoints.Count; i++)
@@ -71,17 +70,10 @@ namespace Voronoi
                 }
             }
             
-            /*
-            for (int i = triangles.Count - 1; i >= 0; i--)
-            {
-                if (triangles[i].SharesVertexWith(superTriangle)) triangles.RemoveAt(i);
-            }
-            */
-            
             return triangles;
         }
 
-        private static Triangle SuperTriangle(List<Point> triangulationPoints)
+        public static Triangle SuperTriangle(List<Point> triangulationPoints)
         {
             double M = triangulationPoints[0].x;
             
@@ -99,5 +91,18 @@ namespace Voronoi
 
             return new Triangle(sp1, sp2, sp3);
         }
+
+        public static List<Triangle> RemoveSuperTriangle(Triangle superTriangle, List<Triangle> triangles)
+        {
+            List<Triangle> trianglesSuperRemoved = new List<Triangle>();
+
+            for (int i = triangles.Count - 1; i >= 0; i--)
+            {
+                if (!triangles[i].SharesVertexWith(superTriangle)) trianglesSuperRemoved.Add(triangles[i]);
+            }
+
+            return trianglesSuperRemoved;
+        }
+
     }
 }

@@ -7,8 +7,8 @@
     <ProjectGuid>{DABD6BDA-17C4-4F5E-A06F-705CA91AA930}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Voronoi</RootNamespace>
-    <AssemblyName>Voronoi</AssemblyName>
+    <RootNamespace>Voronoi_Delaunay</RootNamespace>
+    <AssemblyName>Voronoi-Delaunay</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -51,11 +51,11 @@
     <Compile Include="Point.cs" />
     <Compile Include="Triangle.cs" />
     <Compile Include="Voronoi.cs" />
-    <Compile Include="VoronoiForm.cs">
+    <Compile Include="VoronoiDelaunayForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VoronoiForm.Designer.cs">
-      <DependentUpon>VoronoiForm.cs</DependentUpon>
+    <Compile Include="VoronoiDelaunayForm.Designer.cs">
+      <DependentUpon>VoronoiDelaunayForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +67,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

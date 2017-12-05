@@ -10,22 +10,24 @@ using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using CSPoint = System.Drawing.Point;
 
-namespace Voronoi
+namespace Voronoi_Delaunay
 {
-    public partial class VoronoiForm : Form
+    public partial class VoronoiDelaunayForm : Form
     {
         Graphics g;
         Random seeder;
         Bitmap backImage;
         int pointCount;
 
+        Triangle superTriangle = new Triangle();
         List<Point> points = new List<Point>();
         List<Triangle> delaunayTriangleList = new List<Triangle>();
+        List<Triangle> delaunayTriangleListSuperRemoved = new List<Triangle>();
         List<Edge> delaunayEdgeList = new List<Edge>();
+        List<Edge> delaunayEdgeListSuperRemoved = new List<Edge>();
         List<Edge> voronoiEdgeList = new List<Edge>();
-        List<Edge> voronoiRayEdgelist = new List<Edge>();
 
-        public VoronoiForm()
+        public VoronoiDelaunayForm()
         {
             InitializeComponent();
             seeder = new Random();
@@ -60,8 +62,10 @@ namespace Voronoi
 
         public void DelaunayTriangulate()
         {
-            delaunayTriangleList = Delaunay.Triangulate(points);
-            delaunayEdgeList = Delaunay.DelaunayEdges(delaunayTriangleList);
+            superTriangle = Delaunay.SuperTriangle(points);
+            delaunayTriangleList = Delaunay.Triangulate(superTriangle, points);
+            delaunayTriangleListSuperRemoved = Delaunay.RemoveSuperTriangle(superTriangle, delaunayTriangleList);
+            delaunayEdgeList = Delaunay.DelaunayEdges(delaunayTriangleListSuperRemoved);
             for (int i = 0; i < delaunayEdgeList.Count; i++)
             {
                 CSPoint p1 = new CSPoint((int)delaunayEdgeList[i].start.x, (int)delaunayEdgeList[i].start.y);
@@ -97,7 +101,6 @@ namespace Voronoi
             delaunayTriangleList.Clear();
             delaunayEdgeList.Clear();
             voronoiEdgeList.Clear();
-            voronoiRayEdgelist.Clear();
             pointCount = (int)numericUpDown1.Value;
 
             SpreadPoints();
@@ -110,7 +113,6 @@ namespace Voronoi
             delaunayTriangleList.Clear();
             delaunayEdgeList.Clear();
             voronoiEdgeList.Clear();
-            voronoiRayEdgelist.Clear();
 
             pictureBox1.Image = backImage;
         }

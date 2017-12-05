@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Voronoi
+namespace Voronoi_Delaunay
 {
     class Point
     {

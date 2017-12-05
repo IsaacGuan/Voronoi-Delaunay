@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Voronoi
+namespace Voronoi_Delaunay
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace Voronoi
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new VoronoiForm());
+            Application.Run(new VoronoiDelaunayForm());
         }
     }
 }

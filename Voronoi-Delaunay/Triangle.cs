@@ -4,13 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Voronoi
+namespace Voronoi_Delaunay
 {
     class Triangle
     {
         public Point vertex1, vertex2, vertex3;
         public Point center;
         public double radius;
+
+        public Triangle()
+        {
+            this.vertex1 = null;
+            this.vertex2 = null;
+            this.vertex3 = null;
+        }
 
         public Triangle(Point vertex1, Point vertex2, Point vertex3)
         {

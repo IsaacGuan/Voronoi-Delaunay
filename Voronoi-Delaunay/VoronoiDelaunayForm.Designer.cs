@@ -1,6 +1,6 @@
-﻿namespace Voronoi
+﻿namespace Voronoi_Delaunay
 {
-    partial class VoronoiForm
+    partial class VoronoiDelaunayForm
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -160,8 +160,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "VoronoiForm";
-            this.Text = "Voronoi";
+            this.Name = "VoronoiDelaunayForm";
+            this.Text = "VoronoiDelaunay";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
