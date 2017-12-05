@@ -88,8 +88,8 @@ namespace Voronoi
             {
                 return false;
             }
-
-            if (a.x != b.y) return false;
+            
+            if (a.x != b.x) return false;
             if (a.y != b.y) return false;
 
             return true;

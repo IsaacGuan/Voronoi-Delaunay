@@ -8,13 +8,14 @@ namespace Voronoi
 {
     class Voronoi
     {
-        public List<Edge> VoronoiEdges(List<Triangle> allTriangles, List<Edge> voronoiRayEdgeList)
+        public static List<Edge> VoronoiEdges(List<Triangle> allTriangles)
         {
             List<Edge> voronoiEdgeList = new List<Edge>();
+            List<Edge> voronoiRayEdgeList = new List<Edge>();
 
             for (int i = 0; i < allTriangles.Count; i++)
             {
-                List<Edge> neighborEdgeList = new List<Edge>();
+                //List<Edge> neighborEdgeList = new List<Edge>();
 
                 for (int j = 0; j < allTriangles.Count; j++)
                 {
@@ -23,7 +24,7 @@ namespace Voronoi
                         Edge neighborEdge = allTriangles[i].FindCommonEdgeWith(allTriangles[j]);
                         if (neighborEdge != null)
                         {
-                            neighborEdgeList.Add(neighborEdge);
+                            //neighborEdgeList.Add(neighborEdge);
                             Edge voronoiEdge = new Edge(allTriangles[i].center, allTriangles[j].center);
                             if (!voronoiEdgeList.Contains(voronoiEdge))
                             {
@@ -33,6 +34,7 @@ namespace Voronoi
                     }
                 }
 
+                /*
                 if (neighborEdgeList.Count == 2)
                 {
                     Point midPoint;
@@ -41,37 +43,38 @@ namespace Voronoi
                     {
                         midPoint = FindMidPoint(allTriangles[i].vertex2, allTriangles[i].vertex3);
                         rayEdge = RayEdge(allTriangles[i].center, midPoint);
-                        voronoiEdgeList.Add(rayEdge);
+                        voronoiRayEdgeList.Add(rayEdge);
                     }
                     if (neighborEdgeList[0].ContainsVertex(allTriangles[i].vertex2) && neighborEdgeList[1].ContainsVertex(allTriangles[i].vertex2))
                     {
                         midPoint = FindMidPoint(allTriangles[i].vertex1, allTriangles[i].vertex3);
                         rayEdge = RayEdge(allTriangles[i].center, midPoint);
-                        voronoiEdgeList.Add(rayEdge);
+                        voronoiRayEdgeList.Add(rayEdge);
                     }
                     if (neighborEdgeList[0].ContainsVertex(allTriangles[i].vertex3) && neighborEdgeList[1].ContainsVertex(allTriangles[i].vertex3))
                     {
                         midPoint = FindMidPoint(allTriangles[i].vertex1, allTriangles[i].vertex2);
                         rayEdge = RayEdge(allTriangles[i].center, midPoint);
-                        voronoiEdgeList.Add(rayEdge);
+                        voronoiRayEdgeList.Add(rayEdge);
                     }
                 }
+                */
             }
 
             return voronoiEdgeList;
         }
 
-        public Point FindMidPoint(Point a, Point b)
+        public static Point FindMidPoint(Point a, Point b)
         {
             Point midPoint = new Point((a.x + b.x) / 2.0, (a.y + b.y) / 2.0);
             return midPoint;
         }
 
-        public Edge RayEdge(Point start, Point direction)
+        public static Edge RayEdge(Point start, Point direction)
         {
             Point end = new Point();
             Edge rayEdge;
-            end.x = 100 * (direction.x - start.x) + start.x;
+            end.x = 1000 * (direction.x - start.x) + start.x;
             end.y = (direction.y - start.y) * (end.x - start.x) / (direction.x - start.x) + start.y;
             rayEdge = new Edge(start, end);
 

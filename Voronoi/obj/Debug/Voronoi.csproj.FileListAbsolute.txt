@@ -1,1 +1,8 @@
 D:\computational geometry\Voronoi\Voronoi\bin\Debug\Voronoi.exe.config
+D:\computational geometry\Voronoi\Voronoi\obj\Debug\Voronoi.exe
+D:\computational geometry\Voronoi\Voronoi\obj\Debug\Voronoi.pdb
+D:\computational geometry\Voronoi\Voronoi\bin\Debug\Voronoi.exe
+D:\computational geometry\Voronoi\Voronoi\bin\Debug\Voronoi.pdb
+D:\computational geometry\Voronoi\Voronoi\obj\Debug\Voronoi.csprojResolveAssemblyReference.cache
+D:\computational geometry\Voronoi\Voronoi\obj\Debug\Voronoi.Properties.Resources.resources
+D:\computational geometry\Voronoi\Voronoi\obj\Debug\Voronoi.csproj.GenerateResource.Cache

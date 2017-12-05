@@ -39,18 +39,18 @@ namespace Voronoi
                 return false;
             }
 
-            return ((a.start == b.end && a.start == b.end) ||
-                     (a.start == a.end && a.end == b.start));
+            return ((a.start == b.start && a.end == b.end) ||
+                     (a.start == b.end && a.end == b.start));
         }
-
+        
         public static bool operator !=(Edge a, Edge b)
         {
-            return a != b;
+            return !(a == b);
         }
 
         public override int GetHashCode()
         {
-            return this.start.GetHashCode() ^ this.start.GetHashCode();
+            return this.start.GetHashCode() ^ this.end.GetHashCode();
         }
     }
 }

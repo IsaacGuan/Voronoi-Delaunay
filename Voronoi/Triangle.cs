@@ -57,17 +57,17 @@ namespace Voronoi
 
         public bool SharesVertexWith(Triangle triangle)
         {
-            if (this.vertex1 == triangle.vertex1) return true;
-            if (this.vertex1 == triangle.vertex2) return true;
-            if (this.vertex1 == triangle.vertex3) return true;
+            if (this.vertex1.x == triangle.vertex1.x && this.vertex1.y == triangle.vertex1.y) return true;
+            if (this.vertex1.x == triangle.vertex2.x && this.vertex1.y == triangle.vertex2.y) return true;
+            if (this.vertex1.x == triangle.vertex3.x && this.vertex1.y == triangle.vertex3.y) return true;
 
-            if (this.vertex2 == triangle.vertex1) return true;
-            if (this.vertex2 == triangle.vertex2) return true;
-            if (this.vertex2 == triangle.vertex3) return true;
+            if (this.vertex2.x == triangle.vertex1.x && this.vertex2.y == triangle.vertex1.y) return true;
+            if (this.vertex2.x == triangle.vertex2.x && this.vertex2.y == triangle.vertex2.y) return true;
+            if (this.vertex2.x == triangle.vertex3.x && this.vertex2.y == triangle.vertex3.y) return true;
 
-            if (this.vertex3 == triangle.vertex1) return true;
-            if (this.vertex3 == triangle.vertex2) return true;
-            if (this.vertex3 == triangle.vertex3) return true;
+            if (this.vertex3.x == triangle.vertex1.x && this.vertex3.y == triangle.vertex1.y) return true;
+            if (this.vertex3.x == triangle.vertex2.x && this.vertex3.y == triangle.vertex2.y) return true;
+            if (this.vertex3.x == triangle.vertex3.x && this.vertex3.y == triangle.vertex3.y) return true;
 
             return false;
         }
