@@ -7,3 +7,4 @@ D:\computational geometry\Voronoi-Delaunay\Voronoi-Delaunay\obj\Debug\Voronoi_De
 D:\computational geometry\Voronoi-Delaunay\Voronoi-Delaunay\obj\Debug\Voronoi-Delaunay.csproj.GenerateResource.Cache
 D:\computational geometry\Voronoi-Delaunay\Voronoi-Delaunay\obj\Debug\Voronoi-Delaunay.exe
 D:\computational geometry\Voronoi-Delaunay\Voronoi-Delaunay\obj\Debug\Voronoi-Delaunay.pdb
+D:\computational geometry\Voronoi-Delaunay\Voronoi-Delaunay\obj\Debug\Voronoi_Delaunay.VoronoiDelaunayForm.resources

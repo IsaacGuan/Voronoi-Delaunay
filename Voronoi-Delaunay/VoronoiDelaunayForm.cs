@@ -22,9 +22,7 @@ namespace Voronoi_Delaunay
         Triangle superTriangle = new Triangle();
         List<Point> points = new List<Point>();
         List<Triangle> delaunayTriangleList = new List<Triangle>();
-        List<Triangle> delaunayTriangleListSuperRemoved = new List<Triangle>();
         List<Edge> delaunayEdgeList = new List<Edge>();
-        List<Edge> delaunayEdgeListSuperRemoved = new List<Edge>();
         List<Edge> voronoiEdgeList = new List<Edge>();
 
         public VoronoiDelaunayForm()
@@ -64,8 +62,7 @@ namespace Voronoi_Delaunay
         {
             superTriangle = Delaunay.SuperTriangle(points);
             delaunayTriangleList = Delaunay.Triangulate(superTriangle, points);
-            delaunayTriangleListSuperRemoved = Delaunay.RemoveSuperTriangle(superTriangle, delaunayTriangleList);
-            delaunayEdgeList = Delaunay.DelaunayEdges(delaunayTriangleListSuperRemoved);
+            delaunayEdgeList = Delaunay.DelaunayEdges(superTriangle, delaunayTriangleList);
             for (int i = 0; i < delaunayEdgeList.Count; i++)
             {
                 CSPoint p1 = new CSPoint((int)delaunayEdgeList[i].start.x, (int)delaunayEdgeList[i].start.y);
