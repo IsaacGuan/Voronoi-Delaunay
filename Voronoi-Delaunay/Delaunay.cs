@@ -41,7 +41,7 @@ namespace Voronoi_Delaunay
 
                 for (int j = triangles.Count - 1; j >= 0; j--)
                 {
-                    if (triangles[j].ContainsInCircumcircle(triangulationPoints[i]) > 0)
+                    if (triangles[j].ContainsInCircumcircle(triangulationPoints[i]))
                     {
                         polygon.Add(new Edge(triangles[j].vertex1, triangles[j].vertex2));
                         polygon.Add(new Edge(triangles[j].vertex2, triangles[j].vertex3));

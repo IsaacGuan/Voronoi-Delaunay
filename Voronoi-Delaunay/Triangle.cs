@@ -42,24 +42,12 @@ namespace Voronoi_Delaunay
             this.radius = Math.Sqrt(Math.Abs(vertex1.x - x) * Math.Abs(vertex1.x - x) + Math.Abs(vertex1.y - y) * Math.Abs(vertex1.y - y));
         }
 
-        public double ContainsInCircumcircle(Point point)
+        public bool ContainsInCircumcircle(Point point)
         {
-            double ax = this.vertex1.x - point.x;
-            double ay = this.vertex1.y - point.y;
-            double bx = this.vertex2.x - point.x;
-            double by = this.vertex2.y - point.y;
-            double cx = this.vertex3.x - point.x;
-            double cy = this.vertex3.y - point.y;
+            double d_squared = (point.x - this.center.x) * (point.x - this.center.x) + (point.y - this.center.y) * (point.y - this.center.y);
+            double radius_squared = this.radius * this.radius;
 
-            double det_ab = ax * by - bx * ay;
-            double det_bc = bx * cy - cx * by;
-            double det_ca = cx * ay - ax * cy;
-
-            double a_squared = ax * ax + ay * ay;
-            double b_squared = bx * bx + by * by;
-            double c_squared = cx * cx + cy * cy;
-
-            return a_squared * det_bc + b_squared * det_ca + c_squared * det_ab;
+            return d_squared < radius_squared;
         }
 
         public bool SharesVertexWith(Triangle triangle)
