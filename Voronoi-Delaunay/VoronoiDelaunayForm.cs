@@ -52,7 +52,7 @@ namespace Voronoi_Delaunay
 
             for (int i = 0; i < points.Count; i++)
             {
-                g.FillEllipse(Brushes.White, (float)(points[i].x - 1.5f), (float)(points[i].y - 1.5f), 5, 5);
+                g.FillEllipse(Brushes.White, (float)(points[i].x - 1.5f), (float)(points[i].y - 1.5f), 3, 3);
             }
 
             pictureBox1.Image = backImage;

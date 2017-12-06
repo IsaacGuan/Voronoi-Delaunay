@@ -85,9 +85,9 @@ namespace Voronoi_Delaunay
                 if (yAbs > M) M = yAbs;
             }
 
-            Point sp1 = new Point(10 * M, 0, 0);
-            Point sp2 = new Point(0, 10 * M, 0);
-            Point sp3 = new Point(-10 * M, -10 * M, 0);
+            Point sp1 = new Point(100 * M, 0, 0);
+            Point sp2 = new Point(0, 100 * M, 0);
+            Point sp3 = new Point(-100 * M, -100 * M, 0);
 
             return new Triangle(sp1, sp2, sp3);
         }

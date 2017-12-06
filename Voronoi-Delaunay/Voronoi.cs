@@ -33,11 +33,5 @@ namespace Voronoi_Delaunay
 
             return voronoiEdgeList;
         }
-
-        public static Point FindMidPoint(Point a, Point b)
-        {
-            Point midPoint = new Point((a.x + b.x) / 2.0, (a.y + b.y) / 2.0);
-            return midPoint;
-        }
     }
 }
