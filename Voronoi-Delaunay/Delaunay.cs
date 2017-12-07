@@ -30,7 +30,7 @@ namespace Voronoi_Delaunay
 
         public static List<Triangle> Triangulate(Triangle superTriangle, List<Point> triangulationPoints)
         {
-            List<Triangle> triangles = new List<Triangle>(); ;
+            List<Triangle> triangles = new List<Triangle>();
 
             triangles.Add(superTriangle);
 
