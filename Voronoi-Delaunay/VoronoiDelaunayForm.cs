@@ -69,6 +69,10 @@ namespace Voronoi_Delaunay
                 CSPoint p2 = new CSPoint((int)delaunayEdgeList[i].end.x, (int)delaunayEdgeList[i].end.y);
                 g.DrawLine(Pens.Blue, p1.X, p1.Y, p2.X, p2.Y);
             }
+            for (int i = 0; i < points.Count; i++)
+            {
+                g.FillEllipse(Brushes.White, (float)(points[i].x - 1.5f), (float)(points[i].y - 1.5f), 3, 3);
+            }
 
             pictureBox1.Image = backImage;
         }
