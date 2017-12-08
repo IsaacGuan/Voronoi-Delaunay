@@ -31,6 +31,8 @@ namespace Voronoi_Delaunay
         List<Edge> delaunayEdgeList = new List<Edge>();
         List<Edge> voronoiEdgeList = new List<Edge>();
 
+        Dictionary<int, List<Triangle>> previousTriangleList = new Dictionary<int, List<Triangle>>();
+
         public VoronoiDelaunayForm()
         {
             InitializeComponent();
@@ -67,6 +69,11 @@ namespace Voronoi_Delaunay
         public void DelaunayTriangulate()
         {
             g.Clear(Color.Black);
+
+            List<Triangle> tmp = new List<Triangle>();
+            delaunayTriangleList.ForEach(a => tmp.Add(a));
+
+            previousTriangleList.Add(clickTime, tmp);
 
             List<Edge> polygon = new List<Edge>();
 
@@ -105,24 +112,24 @@ namespace Voronoi_Delaunay
                 Edge edge1 = new Edge(delaunayTriangleList[j].vertex1, delaunayTriangleList[j].vertex2);
                 Edge edge2 = new Edge(delaunayTriangleList[j].vertex2, delaunayTriangleList[j].vertex3);
                 Edge edge3 = new Edge(delaunayTriangleList[j].vertex3, delaunayTriangleList[j].vertex1);
-                if (!delaunayEdgeList.Contains(edge1))
-                {
+                //if (!delaunayEdgeList.Contains(edge1))
+                //{
                     CSPoint p1 = new CSPoint((int)edge1.start.x, (int)edge1.start.y);
                     CSPoint p2 = new CSPoint((int)edge1.end.x, (int)edge1.end.y);
                     g.DrawLine(penBlue, p1.X, p1.Y, p2.X, p2.Y);
-                }
-                if (!delaunayEdgeList.Contains(edge2))
-                {
-                    CSPoint p1 = new CSPoint((int)edge2.start.x, (int)edge2.start.y);
-                    CSPoint p2 = new CSPoint((int)edge2.end.x, (int)edge2.end.y);
-                    g.DrawLine(penBlue, p1.X, p1.Y, p2.X, p2.Y);
-                }
-                if (!delaunayEdgeList.Contains(edge3))
-                {
-                    CSPoint p1 = new CSPoint((int)edge3.start.x, (int)edge3.start.y);
-                    CSPoint p2 = new CSPoint((int)edge3.end.x, (int)edge3.end.y);
-                    g.DrawLine(penBlue, p1.X, p1.Y, p2.X, p2.Y);
-                }
+                //}
+                //if (!delaunayEdgeList.Contains(edge2))
+                //{
+                    CSPoint p3 = new CSPoint((int)edge2.start.x, (int)edge2.start.y);
+                    CSPoint p4 = new CSPoint((int)edge2.end.x, (int)edge2.end.y);
+                    g.DrawLine(penBlue, p3.X, p3.Y, p4.X, p4.Y);
+                //}
+                //if (!delaunayEdgeList.Contains(edge3))
+                //{
+                    CSPoint p5 = new CSPoint((int)edge3.start.x, (int)edge3.start.y);
+                    CSPoint p6 = new CSPoint((int)edge3.end.x, (int)edge3.end.y);
+                    g.DrawLine(penBlue, p5.X, p5.Y, p6.X, p6.Y);
+                //}
             }
 
             for (int j = 0; j < points.Count; j++)
@@ -158,6 +165,7 @@ namespace Voronoi_Delaunay
             delaunayTriangleList.Clear();
             delaunayEdgeList.Clear();
             voronoiEdgeList.Clear();
+            previousTriangleList.Clear();
             pointCount = (int)numericUpDown1.Value;
 
             clickTime = 0;
@@ -172,6 +180,7 @@ namespace Voronoi_Delaunay
             delaunayTriangleList.Clear();
             delaunayEdgeList.Clear();
             voronoiEdgeList.Clear();
+            previousTriangleList.Clear();
 
             clickTime = 0;
 
@@ -195,6 +204,9 @@ namespace Voronoi_Delaunay
                 }
                 else if (clickTime == points.Count)
                 {
+                    List<Triangle> tmp = new List<Triangle>();
+                    delaunayTriangleList.ForEach(a => tmp.Add(a));
+                    previousTriangleList.Add(clickTime, tmp);
                     for (int i = 0; i < delaunayTriangleList.Count; i++)
                     {
                         Edge edge1 = new Edge(delaunayTriangleList[i].vertex1, delaunayTriangleList[i].vertex2);
@@ -225,6 +237,54 @@ namespace Voronoi_Delaunay
             if (checkBox2.Checked == true && delaunayTriangleList.Count != 0 && clickTime > points.Count)
             {
                 VoronoiDiagram();
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {            
+            if (clickTime > 1)
+            {
+                g.Clear(Color.Black);
+                
+                delaunayTriangleList.Clear();
+                //delaunayTriangleList = previousTriangleList[clickTime-1];
+                previousTriangleList[clickTime - 1].ForEach(a => delaunayTriangleList.Add(a));
+                previousTriangleList.Remove(clickTime - 1);
+
+                clickTime--;
+
+                for (int j = 0; j < delaunayTriangleList.Count; j++)
+                {
+                    Edge edge1 = new Edge(delaunayTriangleList[j].vertex1, delaunayTriangleList[j].vertex2);
+                    Edge edge2 = new Edge(delaunayTriangleList[j].vertex2, delaunayTriangleList[j].vertex3);
+                    Edge edge3 = new Edge(delaunayTriangleList[j].vertex3, delaunayTriangleList[j].vertex1);
+                    //if (!delaunayEdgeList.Contains(edge1))
+                    //{
+                        CSPoint p1 = new CSPoint((int)edge1.start.x, (int)edge1.start.y);
+                        CSPoint p2 = new CSPoint((int)edge1.end.x, (int)edge1.end.y);
+                        g.DrawLine(penBlue, p1.X, p1.Y, p2.X, p2.Y);
+                    //}
+                    //if (!delaunayEdgeList.Contains(edge2))
+                    //{
+                        CSPoint p3 = new CSPoint((int)edge2.start.x, (int)edge2.start.y);
+                        CSPoint p4 = new CSPoint((int)edge2.end.x, (int)edge2.end.y);
+                        g.DrawLine(penBlue, p3.X, p3.Y, p4.X, p4.Y);
+                    //}
+                    //if (!delaunayEdgeList.Contains(edge3))
+                    //{
+                        CSPoint p5 = new CSPoint((int)edge3.start.x, (int)edge3.start.y);
+                        CSPoint p6 = new CSPoint((int)edge3.end.x, (int)edge3.end.y);
+                        g.DrawLine(penBlue, p5.X, p5.Y, p6.X, p6.Y);
+                    //}
+                }
+
+                for (int j = 0; j < points.Count; j++)
+                {
+                    g.FillEllipse(Brushes.White, (float)(points[j].x - 3.0f), (float)(points[j].y - 3.0f), 6, 6);
+                }
+                
+
+                pictureBox1.Image = backImage;
             }
         }
     }
