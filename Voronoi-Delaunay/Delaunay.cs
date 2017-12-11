@@ -30,24 +30,38 @@ namespace Voronoi_Delaunay
 
         public static List<Triangle> Triangulate(Triangle superTriangle, List<Point> triangulationPoints)
         {
-            List<Triangle> triangles = new List<Triangle>(); ;
+            triangulationPoints = triangulationPoints.OrderBy(point => point.x).ToList();
+            
+            List<Triangle> open = new List<Triangle>();
+            List<Triangle> closed = new List<Triangle>(); 
+            
+            open.Add(superTriangle);
 
-            triangles.Add(superTriangle);
-
-            for (int i = 0; i < triangulationPoints.Count; i++)
+            for (int i = 0; i < triangulationPoints.Count(); i++)
             {
 
                 List<Edge> polygon = new List<Edge>();
 
-                for (int j = triangles.Count - 1; j >= 0; j--)
+                for (int j = open.Count - 1; j >= 0; j--)
                 {
-                    if (triangles[j].ContainsInCircumcircle(triangulationPoints[i]))
+                    double dx = triangulationPoints.ElementAt(i).x - open[j].center.x;
+
+                    if (dx > 0.0 && dx * dx > open[j].radius * open[j].radius)
                     {
-                        polygon.Add(new Edge(triangles[j].vertex1, triangles[j].vertex2));
-                        polygon.Add(new Edge(triangles[j].vertex2, triangles[j].vertex3));
-                        polygon.Add(new Edge(triangles[j].vertex3, triangles[j].vertex1));
-                        triangles.RemoveAt(j);
+                        closed.Add(open[j]);
+                        open.RemoveAt(j);
+                        continue;
                     }
+
+                    if (!open[j].ContainsInCircumcircle(triangulationPoints.ElementAt(i)))
+                    {
+                        continue;
+                    }
+
+                    polygon.Add(new Edge(open[j].vertex1, open[j].vertex2));
+                    polygon.Add(new Edge(open[j].vertex2, open[j].vertex3));
+                    polygon.Add(new Edge(open[j].vertex3, open[j].vertex1));
+                    open.RemoveAt(j);
                 }
 
                 for (int j = polygon.Count - 2; j >= 0; j--)
@@ -66,9 +80,11 @@ namespace Voronoi_Delaunay
 
                 for (int j = 0; j < polygon.Count; j++)
                 {
-                    triangles.Add(new Triangle(polygon[j].start, polygon[j].end, triangulationPoints[i]));
+                    open.Add(new Triangle(polygon[j].start, polygon[j].end, triangulationPoints.ElementAt(i)));
                 }
             }
+
+            List<Triangle> triangles = open.Concat(closed).ToList();
 
             return triangles;
         }
