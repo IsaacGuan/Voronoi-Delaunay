@@ -22,10 +22,7 @@ namespace Voronoi_Delaunay
                         if (neighborEdge != null)
                         {
                             Edge voronoiEdge = new Edge(allTriangles[i].center, allTriangles[j].center);
-                            if (!voronoiEdgeList.Contains(voronoiEdge))
-                            {
-                                voronoiEdgeList.Add(voronoiEdge);
-                            }
+                            voronoiEdgeList.Add(voronoiEdge);
                         }
                     }
                 }

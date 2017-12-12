@@ -17,11 +17,11 @@ namespace Voronoi_Delaunay
                 Edge edge1 = new Edge(allTriangle[i].vertex1, allTriangle[i].vertex2);
                 Edge edge2 = new Edge(allTriangle[i].vertex2, allTriangle[i].vertex3);
                 Edge edge3 = new Edge(allTriangle[i].vertex3, allTriangle[i].vertex1);
-                if (!delaunayEdgeList.Contains(edge1) && !edge1.ContainsVertex(superTriangle.vertex1) && !edge1.ContainsVertex(superTriangle.vertex2) && !edge1.ContainsVertex(superTriangle.vertex3))
+                if (!edge1.ContainsVertex(superTriangle.vertex1) && !edge1.ContainsVertex(superTriangle.vertex2) && !edge1.ContainsVertex(superTriangle.vertex3))
                     delaunayEdgeList.Add(edge1);
-                if (!delaunayEdgeList.Contains(edge2) && !edge2.ContainsVertex(superTriangle.vertex1) && !edge2.ContainsVertex(superTriangle.vertex2) && !edge2.ContainsVertex(superTriangle.vertex3))
+                if (!edge2.ContainsVertex(superTriangle.vertex1) && !edge2.ContainsVertex(superTriangle.vertex2) && !edge2.ContainsVertex(superTriangle.vertex3))
                     delaunayEdgeList.Add(edge2);
-                if (!delaunayEdgeList.Contains(edge3) && !edge3.ContainsVertex(superTriangle.vertex1) && !edge3.ContainsVertex(superTriangle.vertex2) && !edge3.ContainsVertex(superTriangle.vertex3))
+                if (!edge3.ContainsVertex(superTriangle.vertex1) && !edge3.ContainsVertex(superTriangle.vertex2) && !edge3.ContainsVertex(superTriangle.vertex3))
                     delaunayEdgeList.Add(edge3);
             }
 
