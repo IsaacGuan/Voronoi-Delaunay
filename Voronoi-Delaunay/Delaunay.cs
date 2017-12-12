@@ -17,60 +17,52 @@ namespace Voronoi_Delaunay
                 Edge edge1 = new Edge(allTriangle[i].vertex1, allTriangle[i].vertex2);
                 Edge edge2 = new Edge(allTriangle[i].vertex2, allTriangle[i].vertex3);
                 Edge edge3 = new Edge(allTriangle[i].vertex3, allTriangle[i].vertex1);
-                if (!delaunayEdgeList.Contains(edge1) && !edge1.ContainsVertex(superTriangle.vertex1) && !edge1.ContainsVertex(superTriangle.vertex2) && !edge1.ContainsVertex(superTriangle.vertex3))
+                if (!edge1.ContainsVertex(superTriangle.vertex1) && !edge1.ContainsVertex(superTriangle.vertex2) && !edge1.ContainsVertex(superTriangle.vertex3))
                     delaunayEdgeList.Add(edge1);
-                if (!delaunayEdgeList.Contains(edge2) && !edge2.ContainsVertex(superTriangle.vertex1) && !edge2.ContainsVertex(superTriangle.vertex2) && !edge2.ContainsVertex(superTriangle.vertex3))
+                if (!edge2.ContainsVertex(superTriangle.vertex1) && !edge2.ContainsVertex(superTriangle.vertex2) && !edge2.ContainsVertex(superTriangle.vertex3))
                     delaunayEdgeList.Add(edge2);
-                if (!delaunayEdgeList.Contains(edge3) && !edge3.ContainsVertex(superTriangle.vertex1) && !edge3.ContainsVertex(superTriangle.vertex2) && !edge3.ContainsVertex(superTriangle.vertex3))
+                if (!edge3.ContainsVertex(superTriangle.vertex1) && !edge3.ContainsVertex(superTriangle.vertex2) && !edge3.ContainsVertex(superTriangle.vertex3))
                     delaunayEdgeList.Add(edge3);
             }
 
             return delaunayEdgeList;
         }
 
-        public static List<Triangle> Triangulate(Triangle superTriangle, List<Point> triangulationPoints)
+        public static List<Triangle> Triangulate(List<Triangle> delaunayTriangleList, Point currentPoint)
         {
-            List<Triangle> triangles = new List<Triangle>();
+            List<Edge> polygon = new List<Edge>();
 
-            triangles.Add(superTriangle);
-
-            for (int i = 0; i < triangulationPoints.Count; i++)
+            for (int i = delaunayTriangleList.Count - 1; i >= 0; i--)
             {
-
-                List<Edge> polygon = new List<Edge>();
-
-                for (int j = triangles.Count - 1; j >= 0; j--)
+                if (delaunayTriangleList[i].ContainsInCircumcircle(currentPoint))
                 {
-                    if (triangles[j].ContainsInCircumcircle(triangulationPoints[i]))
-                    {
-                        polygon.Add(new Edge(triangles[j].vertex1, triangles[j].vertex2));
-                        polygon.Add(new Edge(triangles[j].vertex2, triangles[j].vertex3));
-                        polygon.Add(new Edge(triangles[j].vertex3, triangles[j].vertex1));
-                        triangles.RemoveAt(j);
-                    }
-                }
-
-                for (int j = polygon.Count - 2; j >= 0; j--)
-                {
-                    for (int k = polygon.Count - 1; k >= j + 1; k--)
-                    {
-                        if (polygon[j] == polygon[k])
-                        {
-                            polygon.RemoveAt(k);
-                            polygon.RemoveAt(j);
-                            k--;
-                            continue;
-                        }
-                    }
-                }
-
-                for (int j = 0; j < polygon.Count; j++)
-                {
-                    triangles.Add(new Triangle(polygon[j].start, polygon[j].end, triangulationPoints[i]));
+                    polygon.Add(new Edge(delaunayTriangleList[i].vertex1, delaunayTriangleList[i].vertex2));
+                    polygon.Add(new Edge(delaunayTriangleList[i].vertex2, delaunayTriangleList[i].vertex3));
+                    polygon.Add(new Edge(delaunayTriangleList[i].vertex3, delaunayTriangleList[i].vertex1));
+                    delaunayTriangleList.RemoveAt(i);
                 }
             }
 
-            return triangles;
+            for (int i = polygon.Count - 2; i >= 0; i--)
+            {
+                for (int j = polygon.Count - 1; j >= i + 1; j--)
+                {
+                    if (polygon[i] == polygon[j])
+                    {
+                        polygon.RemoveAt(j);
+                        polygon.RemoveAt(i);
+                        j--;
+                        continue;
+                    }
+                }
+            }
+
+            for (int i = 0; i < polygon.Count; i++)
+            {
+                delaunayTriangleList.Add(new Triangle(polygon[i].start, polygon[i].end, currentPoint));
+            }
+
+            return delaunayTriangleList;
         }
 
         public static Triangle SuperTriangle(List<Point> triangulationPoints)
