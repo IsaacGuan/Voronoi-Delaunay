@@ -8,9 +8,33 @@ namespace Voronoi_Delaunay
 {
     class Voronoi
     {
-        public static List<Edge> VoronoiEdges(List<Triangle> allTriangles)
+        public static List<VoronoiEdge> VoronoiEdges(List<DelaunayEdge> delaunayEdges)
         {
-            List<Edge> voronoiEdgeList = new List<Edge>();
+            List<VoronoiEdge> voronoiEdgeList = new List<VoronoiEdge>();
+
+            for (int i = 0; i < delaunayEdges.Count; i++)
+            {
+                List<int> neighbours = new List<int>();
+                for (int j = 0; j < Collections.allPoints[delaunayEdges[i].start].adjoinTriangles.Count; j++)
+                {
+                    for (int k = 0; k < Collections.allPoints[delaunayEdges[i].end].adjoinTriangles.Count; k++)
+                    {
+                        if (Collections.allPoints[delaunayEdges[i].start].adjoinTriangles[j] == Collections.allPoints[delaunayEdges[i].end].adjoinTriangles[k])
+                        {
+                            neighbours.Add(Collections.allPoints[delaunayEdges[i].start].adjoinTriangles[j]);
+                        }
+                    }
+                }
+                VoronoiEdge voronoiEdge = new VoronoiEdge(Collections.allTriangles[neighbours[0]].center, Collections.allTriangles[neighbours[1]].center);
+                voronoiEdgeList.Add(voronoiEdge);
+            }
+
+            return voronoiEdgeList;
+        }
+
+        public static List<VoronoiEdge> VoronoiEdges(List<Triangle> allTriangles)
+        {
+            List<VoronoiEdge> voronoiEdgeList = new List<VoronoiEdge>();
 
             for (int i = 0; i < allTriangles.Count; i++)
             {
@@ -18,11 +42,14 @@ namespace Voronoi_Delaunay
                 {
                     if (j != i)
                     {
-                        Edge neighborEdge = allTriangles[i].FindCommonEdgeWith(allTriangles[j]);
+                        DelaunayEdge neighborEdge = allTriangles[i].FindCommonEdgeWith(allTriangles[j]);
                         if (neighborEdge != null)
                         {
-                            Edge voronoiEdge = new Edge(allTriangles[i].center, allTriangles[j].center);
-                            voronoiEdgeList.Add(voronoiEdge);
+                            VoronoiEdge voronoiEdge = new VoronoiEdge(allTriangles[i].center, allTriangles[j].center);
+                            if (!voronoiEdgeList.Contains(voronoiEdge))
+                            {
+                                voronoiEdgeList.Add(voronoiEdge);
+                            }
                         }
                     }
                 }

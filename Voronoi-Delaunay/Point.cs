@@ -9,12 +9,14 @@ namespace Voronoi_Delaunay
     class Point
     {
         public double x, y, z;
+        public List<int> adjoinTriangles;
 
         public Point()
         {
             this.x = 0;
             this.y = 0;
             this.z = 0;
+            adjoinTriangles = new List<int>();
         }
 
         public Point(double x, double y)
@@ -22,6 +24,7 @@ namespace Voronoi_Delaunay
             this.x = x;
             this.y = y;
             this.z = 0;
+            adjoinTriangles = new List<int>();
         }
 
         public Point(double x, double y, double z)
@@ -29,6 +32,7 @@ namespace Voronoi_Delaunay
             this.x = x;
             this.y = y;
             this.z = z;
+            adjoinTriangles = new List<int>();
         }
 
         public Point(Point point)
@@ -36,6 +40,7 @@ namespace Voronoi_Delaunay
             this.x = point.x;
             this.y = point.y;
             this.z = point.z;
+            adjoinTriangles = new List<int>();
         }
 
         public static Point operator + (Point a, Point b)
@@ -77,7 +82,7 @@ namespace Voronoi_Delaunay
             return this == (Point)obj;
         }
 
-        public static bool operator ==(Point a, Point b)
+        public static bool operator == (Point a, Point b)
         {
             if (((object)a) == ((object)b))
             {
@@ -95,7 +100,7 @@ namespace Voronoi_Delaunay
             return true;
         }
 
-        public static bool operator !=(Point a, Point b)
+        public static bool operator != (Point a, Point b)
         {
             return !(a == b);
         }
@@ -106,7 +111,7 @@ namespace Voronoi_Delaunay
             int yHc = this.y.ToString().GetHashCode();
             int zHc = this.z.ToString().GetHashCode();
 
-            return xHc ^ yHc ^ zHc;
+            return (xHc * 1) ^ (yHc * 2) ^ (zHc * 3);
         }
     }
 }

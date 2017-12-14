@@ -46,8 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections.cs" />
     <Compile Include="Delaunay.cs" />
-    <Compile Include="Edge.cs" />
+    <Compile Include="DelaunayEdge.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Triangle.cs" />
     <Compile Include="Voronoi.cs" />
@@ -59,6 +60,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VoronoiEdge.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

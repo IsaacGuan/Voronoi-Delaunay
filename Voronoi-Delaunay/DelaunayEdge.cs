@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace Voronoi_Delaunay
 {
-    class Edge
+    class DelaunayEdge
     {
-        public Point start, end;
+        public int start, end;
 
-        public Edge(Point start, Point end)
+        public DelaunayEdge(int start, int end)
         {
             this.start = start;
             this.end = end;
         }
 
-        public bool ContainsVertex(Point point)
+        public bool ContainsVertex(int point)
         {
             if (start == point || end == point) return true;
             return false;
@@ -24,10 +24,10 @@ namespace Voronoi_Delaunay
 
         public override bool Equals(object obj)
         {
-            return this == (Edge)obj;
+            return this == (DelaunayEdge)obj;
         }
 
-        public static bool operator ==(Edge a, Edge b)
+        public static bool operator == (DelaunayEdge a, DelaunayEdge b)
         {
             if (((object)a) == ((object)b))
             {
@@ -42,8 +42,8 @@ namespace Voronoi_Delaunay
             return ((a.start == b.start && a.end == b.end) ||
                      (a.start == b.end && a.end == b.start));
         }
-        
-        public static bool operator !=(Edge a, Edge b)
+
+        public static bool operator != (DelaunayEdge a, DelaunayEdge b)
         {
             return !(a == b);
         }
