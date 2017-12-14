@@ -1,10 +1,9 @@
-D:\computational geometry\Voronoi\Voronoi\bin\Debug\Voronoi-Delaunay.exe.config
 D:\computational geometry\Voronoi-Delaunay\Voronoi-Delaunay\bin\Debug\Voronoi-Delaunay.exe.config
 D:\computational geometry\Voronoi-Delaunay\Voronoi-Delaunay\bin\Debug\Voronoi-Delaunay.exe
 D:\computational geometry\Voronoi-Delaunay\Voronoi-Delaunay\bin\Debug\Voronoi-Delaunay.pdb
 D:\computational geometry\Voronoi-Delaunay\Voronoi-Delaunay\obj\Debug\Voronoi-Delaunay.csprojResolveAssemblyReference.cache
 D:\computational geometry\Voronoi-Delaunay\Voronoi-Delaunay\obj\Debug\Voronoi_Delaunay.Properties.Resources.resources
+D:\computational geometry\Voronoi-Delaunay\Voronoi-Delaunay\obj\Debug\Voronoi_Delaunay.VoronoiDelaunayForm.resources
 D:\computational geometry\Voronoi-Delaunay\Voronoi-Delaunay\obj\Debug\Voronoi-Delaunay.csproj.GenerateResource.Cache
 D:\computational geometry\Voronoi-Delaunay\Voronoi-Delaunay\obj\Debug\Voronoi-Delaunay.exe
 D:\computational geometry\Voronoi-Delaunay\Voronoi-Delaunay\obj\Debug\Voronoi-Delaunay.pdb
-D:\computational geometry\Voronoi-Delaunay\Voronoi-Delaunay\obj\Debug\Voronoi_Delaunay.VoronoiDelaunayForm.resources
