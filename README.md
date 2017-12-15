@@ -1,6 +1,6 @@
 # Voronoi-Delaunay
 
-This is an animation version of the implementation which shows the Delaunay triangulation step by step.
+This is an animation version that illustrates the Bowyer–Watson algorithm step by step.
 
 ![step1](/step1.bmp)
 
